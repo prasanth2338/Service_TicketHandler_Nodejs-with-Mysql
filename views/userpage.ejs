@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>mark sort</title>
+    <a>Date:<%=date%></a>
+    <h1>mark color sortex</h1>
+    <link rel='stylesheet' href='/stylesheets/stylecopy.css' />
+</head>
+
+<body class="mainpgid">
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'Ticket Open')">Ticket Open</button>
+        <button class="tablinks" onclick="openCity(event, 'Ticket Update')">Ticket Update</button>
+        <button class="tablinks" onclick="openCity(event, 'Ticket Details')">Ticket Details</button>
+    </div>
+    <div id="Ticket Open" class="tabcontent">
+        <div class="servicelbl1">
+            <h3><b>Service Call</b></h3>
+        </div>
+        <div class="dataform">
+            <form name="loginpg" method='post' action="/users/<%=LoginId%>/mark">
+                <h3><b>Open Service Ticket</b></h3>
+                <label for="mill_name">Mill Name:</label>
+                <input name="millname" value="millname" /><br><br>
+                <label for="address">Address:</label>
+                <input name="add" value="address" /><br><br>
+                <label for="mob">Mob-No:</label>
+                <input name="mob_no" value="mob" /><br><br>
+                <label for="model">Model:</label>
+                <select id="model_slt" name="modelname">
+                    <option value="smartjett">Smart Jett</option>
+                    <option value="smartcruze">Smart Cruze</option>
+                    <option value="trendz">Trendz</option>
+                    <option value="smartspeed">Smart Speed</option>
+                </select><br><br>
+                <button type='submit'>Register</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="Ticket Update" class="tabcontent">
+        
+    </div>
+    <div id="Ticket Details" class="tabcontent">
+        
+    </div>
+    <script>
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+
+</html>

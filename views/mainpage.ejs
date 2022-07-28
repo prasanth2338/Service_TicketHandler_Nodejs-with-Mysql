@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>mark sort</title>
+    <a>Date:<%=date%></a>
+    <h1>mark color sortex</h1>
+    <link rel='stylesheet' href='/stylesheets/stylecopy.css' />
+</head>
+
+<body class="mainpgid">
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'Ticket Open')">Ticket Open</button>
+        <button class="tablinks" onclick="openCity(event, 'Ticket Update')">Ticket Update</button>
+        <button class="tablinks" onclick="openCity(event, 'Ticket Details')">Ticket Details</button>
+    </div>
+    <div id="Ticket Open" class="tabcontent">
+        <div class="servicelbl">
+            <h3><b>Service Call</b></h3>
+        </div>
+        <div class="tblbl">
+            <h3><b>New Ticket Table</b></h3>
+        </div>
+        <div class="dataform">
+
+            <form name="loginpg" method='post' action="/users/<%=LoginId%>/mark">
+                <h3><b>Open Service Ticket</b></h3>
+                <label for="mill_name">Mill Name:</label>
+                <input name="millname" value="millname" /><br><br>
+                <label for="address">Address:</label>
+                <input name="add" value="address" /><br><br>
+                <label for="mob">Mob-No:</label>
+                <input name="mob_no" value="mob" /><br><br>
+                <label for="model">Model:</label>
+                <select id="model_slt" name="modelname">
+                    <option value="smartjett">Smart Jett</option>
+                    <option value="smartcruze">Smart Cruze</option>
+                    <option value="trendz">Trendz</option>
+                    <option value="smartspeed">Smart Speed</option>
+                </select><br><br>
+                
+                <button type='submit'>Register</button>
+                
+
+            </form>
+
+
+        </div>
+        <div class=tableform>
+            <table class="table1">
+                <thead class="th">
+                    <tr>
+                        <th>Id</th>
+                        <th>Mill_Name</th>
+                        <th>Address</th>
+                        <th>Mob_No</th>
+                        <th>Machine_Model</th>
+                        <th>MFDate</th>
+                        <th>Complaint</th>
+                        <th>Status</th>
+                        <th>Complaint_Date</th>
+                        <th>Eng_Name</th>
+
+                    </tr>
+
+                </thead>
+                <tbody class="tb">
+                    
+                    <% if(userdata.lenght!=0){ var i=1; userdata.forEach(function(data){ %>
+                        <%var date = data.Complaint_Date%>
+                        
+                        <tr>
+                            <td>
+                                <%=i;%>
+                            </td>
+                            <td>
+                                <%=data.Mill_Name%>
+                            </td>
+                            <td>
+                                <%=data.Address%>
+                            </td>
+                            <td>
+                                <%=data.Mob_No%>
+                            </td>
+                            <td>
+                                <%=data.Machine_Model%>
+                            </td>
+                            <td>
+                                <%=data.MFDate%>
+                            </td>
+                            <td>
+                                <%=data.Complaint%>
+                            </td>
+                            <td>
+                                <%=data.Status%>
+                            </td>
+                            <td>
+                                <%=moment(date).format('MM/DD/YYYY hh:mm a')%>
+                            </td>
+                            <td>
+                                <%=data.Eng_Name%>
+                            </td>
+                        </tr>
+                        <% i++; }) %>
+                            <%} else{%>
+                                <tr>
+                                    <td colspan="7">no data</td>
+
+                                </tr>
+                                <% } %>
+
+
+                </tbody>
+            </table>
+
+            <br>
+            <br>
+            <style>
+                table,
+                th,
+                td {
+                    background-color: aliceblue;
+                    border: 1px solid black;
+                }
+            </style>
+            <link rel='stylesheet' href='/stylesheets/stylecopy.css' />
+        </div>
+
+    </div>
+
+
+    <div id="Ticket Update" class="tabcontent">
+        <div class="servicelbl">
+            <h3><b>Service Call Update</b></h3>
+        </div>
+        <div class="tblbl">
+            <h3><b>Update Ticket Table</b></h3>
+        </div>
+        <div class="dataform">
+
+            <form name="loginpg" method='post'  enctype="multipart/form-data" action="/users/<%=LoginId%>/update">
+                <h3><b>Update Service Ticket</b></h3>
+                <label for="id">Ticket No:</label>
+                <input name="Ticket_No" value="Ticket No" /><br><br>
+                <label for="materials">Materials:</label>
+                <input name="materials" value="materials" /><br><br>
+                <label for="Amount">Mob-Amount:</label>
+                <input name="Amount" value="Amount" /><br><br>
+                <label for="Do Service">Do Service:</label>
+                <input name="Do_Service" value="Do Service" /><br><br>
+
+                <label for="myfile">Select files:</label>
+                <input type="file" id="myfile" name="image" accept='image/*'><br><br>
+
+                <button type='submit'>Register</button>
+                
+
+            </form>
+            
+
+        </div>
+        <div class=tableform>
+            <table class="table1">
+                <thead class="th">
+                    <tr>
+                        <th>Ticket_No</th>
+                        <th>Mill_Name</th>
+                        <th>Changed_Materials</th>
+                        <th>Service_Charge</th>
+                        <th>Payment</th>
+                        <th>Close_date</th>
+                        <th>Status</th>
+                        <th>Machine_Model</th>
+                        <th>Complaint_Date</th>
+
+
+                    </tr>
+
+                </thead>
+                <tbody class="tb">
+
+                    <% if(openstate.lenght!=0){ var i=1; openstate.forEach(function(data){ %>
+                        <tr>
+                            <%var date = data.Complaint_Date%>
+
+                            <td>
+                                <%=data.Ticket_No%>
+                            </td>
+                            <td>
+                                <%=data.Mill_Name%>
+                            </td>
+                            <td>
+                                <%=data.Changed_Materials%>
+                            </td>
+                            <td>
+                                <%=data.Service_Charge%>
+                            </td>
+                            <td>
+                                <%=data.Payment%>
+                            </td>
+                            <td>
+                                <%=data.Close_date%>
+                            </td>
+                            <td>
+                                <%=data.Status%>
+                            </td>
+                            <td>
+                                <%=data.Machine_Model%>
+                            </td>
+                            <td>
+                                <%=moment(date).format('MM/DD/YYYY hh:mm a')%>
+                            </td>
+                        </tr>
+                        <% i++; }) %>
+                            <%} else{%>
+                                <tr>
+                                    <td colspan="7">no data</td>
+
+                                </tr>
+                                <% } %>
+
+
+                </tbody>
+            </table>
+
+            <br>
+            <br>
+            <style>
+                table,
+                th,
+                td {
+                    background-color: aliceblue;
+                    border: 1px solid black;
+                }
+            </style>
+            <link rel='stylesheet' href='/stylesheets/stylecopy.css' />
+        </div>
+    </div>
+
+    <div id="Ticket Details" class="tabcontent">
+        <div class="servicelbl">
+            <h3><b>Ticket Details</b></h3>
+        </div>
+        <div class="tblbl">
+            <h3><b>Customer Ticket Table</b></h3>
+        </div>
+        <div class="dataform">
+            
+        <h3><b>Customer Details</b></h3>
+            
+        <form name="loginpg" method='post' action="/users/<%=LoginId%>/Ticket">
+            <label for="mill_name">Mill Name:</label>
+            <input name="millname" value="millname" /><br><br>
+            <label for="address">Address:</label>
+            <input name="add" value="address" /><br><br>
+            <button type='submit'>check</button>
+            
+
+        </form>
+        </div>
+        <div class=tableform>
+            <table class="table1">
+                <thead class="th">
+                    <tr>
+                        <th>ID</th>
+                        <th>Mill_Name</th>
+                        <th>address</th>
+                        <th>Machine_Model</th>
+                        <th>Complaint_Date</th>
+                        <th>Close_date</th>
+                        <th>Service_Charge</th>
+                    </tr>
+                
+                </thead>
+                <tbody class="tb">
+                    
+                    <% if(checkTicketLog.length!=0){ var i=1; checkTicketLog.forEach(function(data){ %>
+                        
+                        <tr>
+                            <td>
+                                <%=i;%>
+                            </td>
+                            <td>
+                                <%=data.Mill_Name%>
+                            </td>
+                            <td>
+                                <%=data.address%>
+                            </td>
+                            <td>
+                                <%=data.Machine_Model%>
+                            </td>
+                            <td>
+                                <%=data.Complaint_Date%>
+                            </td>
+                            <td>
+                                <%=data.Close_date%>
+                            </td>
+                            <td>
+                                <%=data.Service_Charge%>
+                            </td>
+                            
+                        </tr>
+                        <% i++; }) %>
+                            <%} else{%>
+                                <tr>
+                                    <td>
+                                        null
+                                    </td>
+                                    <td>
+                                        null
+                                    </td>
+                                    <td>
+                                        null
+                                    </td>
+                                    <td>
+                                        null
+                                    </td>
+                                    <td>
+                                        null
+                                    </td>
+                                    <td>
+                                        null
+                                    </td>
+                                    <td>
+                                        null
+                                    </td>
+
+                                </tr>
+                                <% } %>
+
+
+                </tbody>
+            </table>
+    
+            <br>
+            <br>
+            <style>
+                table,
+                th,
+                td {
+                    background-color: aliceblue;
+                    border: 1px solid black;
+                }
+            </style>
+            <link rel='stylesheet' href='/stylesheets/stylecopy.css' />
+        </div>
+    </div>
+
+    
+
+
+
+    <script>
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+
+
+
+</html>
